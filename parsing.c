@@ -6,7 +6,7 @@
 /*   By: edeveze <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 17:05:53 by edeveze           #+#    #+#             */
-/*   Updated: 2017/09/25 18:49:50 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/09/26 23:02:06 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,26 @@ void	addlast_room(t_rooms **begin, t_rooms *new)
 		*begin = new;
 		return ;
 	}
-	while (lst->next)
-		lst = lst->next;
+	while (lst)
+	{
+		if (lst->coord_x == new->coord_x && lst->coord_y == new->coord_y)
+		{
+			lst->name = new->name;
+			free(new);
+			return ;
+		}
+		if (ft_strcmp(lst->name, new->name) == 0)
+		{
+			lst->coord_x = new->coord_x;
+			lst->coord_y = new->coord_y;
+			free(new);
+			return ;
+		}
+		if (lst->next)
+			lst = lst->next;
+		else
+			break ;
+	}
 	lst->next = new;
 }
 
