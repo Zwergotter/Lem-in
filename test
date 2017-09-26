@@ -1,0 +1,11 @@
+32i
+##start
+debut 1 0
+##end
+fin 5 0
+#comment
+mid 9 0
+extrem_mid 13 1
+debut-mid
+mid-extrem_mid
+extrem_mid-fin
