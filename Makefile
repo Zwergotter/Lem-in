@@ -6,7 +6,7 @@
 #    By: edeveze <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/21 15:08:58 by edeveze           #+#    #+#              #
-#    Updated: 2017/09/26 22:41:03 by edeveze          ###   ########.fr        #
+#    Updated: 2017/09/28 20:29:42 by edeveze          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,8 @@ NAME = lem-in
 # Sources
 SRC = 	main.c\
 		parsing.c\
+		room.c\
+		tube.c\
 
 # Includes
 INC = -I includes -I libft/includes

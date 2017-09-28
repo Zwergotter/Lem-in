@@ -6,7 +6,7 @@
 /*   By: edeveze <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 15:05:29 by edeveze           #+#    #+#             */
-/*   Updated: 2017/09/25 15:41:20 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/09/28 17:36:13 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,13 @@ typedef struct		s_data
 	int				n_ants;
 	t_rooms			*rooms;
 	t_tubes			*tubes;
+	char			*all;
 }					t_data;
 
+int		tube(t_data *data, char *line);
+int		room(t_data *data, char *line);
+
+int		start_end_values(t_data *data, char **tmp, int i);
 void	init_data(t_data *data);
 
 #endif
