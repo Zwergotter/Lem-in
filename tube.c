@@ -6,7 +6,7 @@
 /*   By: edeveze <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 17:25:27 by edeveze           #+#    #+#             */
-/*   Updated: 2017/09/28 17:25:29 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/09/28 21:06:20 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,7 @@ int		tube(t_data *data, char *line)
 	i = 0;
 	j = 0;
 	if (!(tube = malloc(sizeof(t_tubes))))
-	{
-		ft_putstr_fd("Memory allocation failed", 2);
-		exit (0);
-	}
+		error(MEM);
 	while (line[i] && line[i] != '-')
 		i++;
 	if (i == 0)

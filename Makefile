@@ -15,6 +15,7 @@ NAME = lem-in
 
 # Sources
 SRC = 	main.c\
+		error.c\
 		parsing.c\
 		room.c\
 		tube.c\

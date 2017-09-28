@@ -6,7 +6,7 @@
 /*   By: edeveze <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 17:37:43 by edeveze           #+#    #+#             */
-/*   Updated: 2017/09/28 20:53:37 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/09/28 21:06:04 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,7 @@ void	new(t_rooms *last, char **tmp)
 	t_rooms *new;
 
 	if (!(new = malloc(sizeof(t_rooms))))
-	{
-		ft_putstr_fd("Memory allocation failed", 2);
-		exit(0);
-	}
+		error(MEM);
 	new->name = ft_strdup(tmp[0]);
 	new->coord_x = ft_atoi(tmp[1]);
 	new->coord_y = ft_atoi(tmp[2]);
@@ -68,10 +65,7 @@ int		room(t_data *data, char *line)
 	char	**tmp;
 
 	if (!(tmp = ft_strsplit(line, ' ')))
-	{
-		ft_putstr_fd("Memory allocation failed", 2);
-		exit(0);
-	}
+		error(MEM);
 	if (data->start && (data->start == tmp[0] ||
 		(data->start_x == ft_atoi(tmp[1]) && data->start_y == ft_atoi(tmp[2]))))
 		return (start_end_values(data, tmp, 0));

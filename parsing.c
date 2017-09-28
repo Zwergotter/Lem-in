@@ -6,7 +6,7 @@
 /*   By: edeveze <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 17:05:53 by edeveze           #+#    #+#             */
-/*   Updated: 2017/09/28 20:52:29 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/09/28 21:04:15 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,7 @@ int			hash_line(t_data *data, char *line)
 			get_next_line(0, &line);
 		}
 		if (!(tmp = ft_strsplit(line, ' ')))
-		{
-			ft_putstr_fd("Memory allocation failed", 2);
-			exit(0);
-		}
+			error(MEM);
 		start_end_values(data, tmp, i);
 	}
 	return (1);
@@ -92,10 +89,7 @@ void		set_values(t_data *data, char *number)
 	data->all = ft_strdup("");
 	data->n_ants = ft_atoi(number);
 	if (data->n_ants < 0)
-	{
-		ft_putstr_fd("Wrong number of ants given", 2);
-		exit(0);
-	}
+		error(NB_ANTS);
 }
 
 void		init_data(t_data *data)
@@ -114,10 +108,7 @@ void		init_data(t_data *data)
 		else if (*buf == '\n')
 			break ;
 		else
-		{
-			ft_putstr_fd("Invalid number, must only contains digits", 2);
-			exit(0);
-		}
+			error(NOT_NB);
 	}
 	ret = 1;
 	set_values(data, number);
@@ -127,7 +118,5 @@ void		init_data(t_data *data)
 			ret = hash_line(data, line);
 		else
 			ret = other(data, line);
-		if (ret)
-
 	}
 }

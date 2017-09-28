@@ -6,7 +6,7 @@
 /*   By: edeveze <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 15:05:00 by edeveze           #+#    #+#             */
-/*   Updated: 2017/09/21 15:05:02 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/09/28 21:06:42 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,7 @@ int		main(void)
 	t_data	*data;
 
 	if (!(data = malloc(sizeof(t_data))))
-	{
-		ft_putstr_fd("Memory allocation failed", 2);
-		exit (0);
-	}
+		error(MEM);
 	init_data(data);
 	ft_putstr_fd(data->start, 2);
 	ft_putchar_fd('\n', 2);
