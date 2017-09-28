@@ -60,6 +60,8 @@ int			hash_line(t_data *data, char *line)
 	{
 		if (line[2] == 'e')
 			i = 1;
+		data->all = ft_strjoinfree(data->all, line, 3);
+		data->all = ft_strjoinfree(data->all, "\n", 1);
 		get_next_line(0, &line);
 		while (ft_strcmp("##start", line) == 0 || ft_strcmp("##end", line) == 0)
 		{
@@ -67,6 +69,8 @@ int			hash_line(t_data *data, char *line)
 				i = line[2] == 'e' ? 1 : 0;
 			else
 				i = 2;
+			data->all = ft_strjoinfree(data->all, line, 3);
+			data->all = ft_strjoinfree(data->all, "\n", 1);
 			get_next_line(0, &line);
 		}
 		if (!(tmp = ft_strsplit(line, ' ')))
@@ -90,6 +94,8 @@ void		set_values(t_data *data, char *number)
 	data->n_ants = ft_atoi(number);
 	if (data->n_ants < 0)
 		error(NB_ANTS);
+	data->all = ft_strjoinfree(data->all, number, 3);
+	data->all = ft_strjoinfree(data->all, "\n", 1);
 }
 
 void		init_data(t_data *data)
@@ -110,13 +116,20 @@ void		init_data(t_data *data)
 		else
 			error(NOT_NB);
 	}
+	read(0, buf, 1);
 	ret = 1;
 	set_values(data, number);
+	// get_next_line(0, &line);
+	// free(line);
 	while (ret && get_next_line(0, &line) && ft_isprint(line[0]))
 	{
-		if (line[0] == '#')
-			ret = hash_line(data, line);
-		else
-			ret = other(data, line);
+				ft_putstr_fd("\nline in while: ", 2);
+		ft_putstr_fd(line, 2);
+		ret = (line[0] == '#') ? hash_line(data, line) : other(data, line);
+		if (ret)
+		{
+			data->all = ft_strjoinfree(data->all, line, 3);
+			data->all = ft_strjoinfree(data->all, "\n", 1);
+		}
 	}
 }
