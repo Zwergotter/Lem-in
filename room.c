@@ -6,24 +6,28 @@
 /*   By: edeveze <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 17:37:43 by edeveze           #+#    #+#             */
-/*   Updated: 2017/09/28 21:06:04 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/10/01 15:53:32 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/lem_in.h"
 
-void	new(t_rooms *last, char **tmp)
+void	new(t_rooms *last, char **tmp, t_data *data, int i)
 {
 	t_rooms *new;
 
 	if (!(new = malloc(sizeof(t_rooms))))
 		error(MEM);
+	if (i == 1 || i == 2)
+		data->start = new;
+	if (i == 0 || i == 2)
+		data->end = new;
 	new->name = ft_strdup(tmp[0]);
 	new->coord_x = ft_atoi(tmp[1]);
 	new->coord_y = ft_atoi(tmp[2]);
 	new->next = NULL;
 	if (!last)
-		last = new;
+		data->rooms = new;
 	else
 		last->next = new;
 }
@@ -33,22 +37,26 @@ void	new(t_rooms *last, char **tmp)
 ** its name.
 */
 
-int		to_check(t_rooms **begin, char **tmp)
+int		to_check(t_data *data, char **tmp, int i)
 {
 	t_rooms *lst;
 
-	lst = *begin;
+	lst = data->rooms;
 	while (lst)
 	{
 		if (lst->coord_x == ft_atoi(tmp[1]) && lst->coord_y == ft_atoi(tmp[2]))
 		{
 			lst->name = ft_strdup(tmp[0]);
+			data->start = (i == 1 || i == 2) ? data->start : lst;
+			data->end = (i == 0 || i == 2) ? data->end : lst;
 			return (1);
 		}
-		if (lst->name == tmp[0])
+		if (!ft_strcmp(lst->name, tmp[0]))
 		{
 			lst->coord_x = ft_atoi(tmp[1]);
 			lst->coord_y = ft_atoi(tmp[2]);
+			data->start = (i == 1 || i == 2) ? lst : data->start;
+			data->end = (i == 0 || i == 2) ? lst : data->end;
 			return (1);
 		}
 		if (lst->next)
@@ -56,23 +64,28 @@ int		to_check(t_rooms **begin, char **tmp)
 		else
 			break ;
 	}
-	new(lst, tmp);
+	new(lst, tmp, data, i);
 	return (0);
 }
 
-int		room(t_data *data, char *line)
+void	free_tab(char **t)
+{
+	int i;
+
+	i = -1;
+	while (t[++i])
+		free(t[i]);
+	free(t);
+}
+
+int		room(t_data *data, char *line, int i)
 {
 	char	**tmp;
 
 	if (!(tmp = ft_strsplit(line, ' ')))
 		error(MEM);
-	if (data->start && (data->start == tmp[0] ||
-		(data->start_x == ft_atoi(tmp[1]) && data->start_y == ft_atoi(tmp[2]))))
-		return (start_end_values(data, tmp, 0));
-	if (data->end && (data->end == tmp[0] ||
-		(data->end_x == ft_atoi(tmp[1]) && data->end_y == ft_atoi(tmp[2]))))
-		return (start_end_values(data, tmp, 1));
-	to_check(&data->rooms, tmp);
-	free(tmp);
+	// verif tmp
+	to_check(data, tmp, i);
+	free_tab(tmp);
 	return (1);
 }

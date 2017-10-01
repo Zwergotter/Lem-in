@@ -87,6 +87,7 @@ SRC =		ft_atoi.c \
 			ft_tolower.c \
 			ft_toupper.c \
 			get_next_line.c\
+			palloc.c\
 
 OBJ = $(SRC:.c=.o)
 

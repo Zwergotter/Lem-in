@@ -6,7 +6,7 @@
 /*   By: edeveze <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 17:25:27 by edeveze           #+#    #+#             */
-/*   Updated: 2017/09/28 21:06:20 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/10/01 15:53:10 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ int		tube(t_data *data, char *line)
 		error(MEM);
 	while (line[i] && line[i] != '-')
 		i++;
-	if (i == 0)
-		return (0);
 	tube->tube1 = ft_strsub(line, 0, i++);
 	j = i;
 	while (line[j])

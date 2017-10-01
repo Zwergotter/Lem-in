@@ -6,7 +6,7 @@
 /*   By: edeveze <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 15:05:29 by edeveze           #+#    #+#             */
-/*   Updated: 2017/09/28 21:05:04 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/10/01 15:53:05 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,8 @@ typedef struct		s_tubes
 
 typedef struct		s_data
 {
-	char			*start;
-	int				start_x;
-	int				start_y;
-	char			*end;
-	int				end_x;
-	int				end_y;
+	t_rooms			*start;
+	t_rooms			*end;
 	int				n_ants;
 	t_rooms			*rooms;
 	t_tubes			*tubes;
@@ -50,11 +46,13 @@ typedef struct		s_data
 }					t_data;
 
 int		tube(t_data *data, char *line);
-int		room(t_data *data, char *line);
+int		room(t_data *data, char *line, int i);
 
 int		start_end_values(t_data *data, char **tmp, int i);
 void	init_data(t_data *data);
 
 void	error(t_error error);
+
+void	free_tab(char **t);
 
 #endif

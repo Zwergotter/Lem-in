@@ -17,6 +17,8 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <sys/uio.h>
+# include <errno.h>
+# include <stdio.h>
 
 # define BUFF_SIZE 10
 
@@ -105,5 +107,6 @@ size_t				ft_strlen(const char *str);
 int					get_next_line(const int fd, char **line);
 char				*ft_itoa_base(uintmax_t number, int base, int neg);
 int					ft_atoi_base(char *str, int base);
+void				*palloc(int i);
 
 #endif
