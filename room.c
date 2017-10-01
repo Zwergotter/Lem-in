@@ -6,11 +6,21 @@
 /*   By: edeveze <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 17:37:43 by edeveze           #+#    #+#             */
-/*   Updated: 2017/10/01 15:53:32 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/10/01 16:09:26 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/lem_in.h"
+
+int		len_tab(char **tmp)
+{
+	int i;
+
+	i = 0;
+	while (tmp[i])
+		i++;
+	return (i);
+}
 
 void	new(t_rooms *last, char **tmp, t_data *data, int i)
 {
@@ -84,6 +94,8 @@ int		room(t_data *data, char *line, int i)
 
 	if (!(tmp = ft_strsplit(line, ' ')))
 		error(MEM);
+	if (len_tab(tmp) != 3)
+		return (0);
 	// verif tmp
 	to_check(data, tmp, i);
 	free_tab(tmp);

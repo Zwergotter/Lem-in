@@ -6,7 +6,7 @@
 /*   By: edeveze <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 17:25:27 by edeveze           #+#    #+#             */
-/*   Updated: 2017/10/01 15:53:10 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/10/01 16:09:34 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ int		tube(t_data *data, char *line)
 		i++;
 	tube->tube1 = ft_strsub(line, 0, i++);
 	j = i;
-	while (line[j])
+	while (line[j] && line[j] != '-')
 		j++;
-	if (j == i)
+	if (j == i || line[j] == '-')
 		return (0);
 	tube->tube2 = ft_strsub(line, i, j - i);
 	tube->next = NULL;
