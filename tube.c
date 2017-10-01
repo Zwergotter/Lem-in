@@ -3,28 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   tube.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edeveze <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 17:25:27 by edeveze           #+#    #+#             */
-/*   Updated: 2017/10/01 16:09:34 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/10/01 17:53:33 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/lem_in.h"
 
-void	addlast_tube(t_tubes **begin, t_tubes *new)
+int		addlast_tube(t_data *data, t_tubes *new)
 {
 	t_tubes	*lst;
+	t_rooms *room;
+	int		i;
+	int 	j;
 
-	lst = *begin;
+	lst = data->tubes;
+	room = data->rooms;
+	i = 1;
+	j = 1;
+	while (room)
+	{
+		if (!ft_strcmp(new->room1, room->name))
+			i = 0;
+		if (!ft_strcmp(new->room2, room->name))
+			j = 0;
+		room = room->next;
+	}
+	if (i || j)
+		return (0);
 	if (lst == 0)
 	{
-		*begin = new;
-		return ;
+		data->tubes = new;
+		return (1);
 	}
 	while (lst->next)
 		lst = lst->next;
 	lst->next = new;
+	return (1);
 }
 
 int		tube(t_data *data, char *line)
@@ -38,14 +55,15 @@ int		tube(t_data *data, char *line)
 	tube = palloc(sizeof(t_tubes));
 	while (line[i] && line[i] != '-')
 		i++;
-	tube->tube1 = ft_strsub(line, 0, i++);
+	tube->room1 = ft_strsub(line, 0, i++);
 	j = i;
 	while (line[j] && line[j] != '-')
 		j++;
 	if (j == i || line[j] == '-')
 		return (0);
-	tube->tube2 = ft_strsub(line, i, j - i);
+	tube->room2 = ft_strsub(line, i, j - i);
 	tube->next = NULL;
-	addlast_tube(&data->tubes, tube);
-	return (1);
+	if (!ft_strcmp(tube->room1, tube->room2))
+		return (0);
+	return (addlast_tube(data, tube));
 }
