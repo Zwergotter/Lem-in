@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edeveze <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 15:05:00 by edeveze           #+#    #+#             */
-/*   Updated: 2017/10/01 15:53:20 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/10/01 16:26:18 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@ int		main(void)
 {
 	t_data	*data;
 
-	if (!(data = malloc(sizeof(t_data))))
-		error(MEM);
+	data = palloc(sizeof(t_data));
 	init_data(data);
 	// ft_putstr_fd(data->start, 2);
 	// ft_putchar_fd('\n', 2);

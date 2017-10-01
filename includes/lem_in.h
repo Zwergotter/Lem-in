@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edeveze <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 15:05:29 by edeveze           #+#    #+#             */
-/*   Updated: 2017/10/01 15:53:05 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/10/01 16:35:10 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 typedef	enum 		e_error
 {
-	MEM, NB_ANTS, NOT_NB
+	MEM, NOT_NB
 }					t_error;
 
 typedef struct		s_rooms

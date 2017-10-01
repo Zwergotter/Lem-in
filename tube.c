@@ -35,8 +35,7 @@ int		tube(t_data *data, char *line)
 
 	i = 0;
 	j = 0;
-	if (!(tube = malloc(sizeof(t_tubes))))
-		error(MEM);
+	tube = palloc(sizeof(t_tubes));
 	while (line[i] && line[i] != '-')
 		i++;
 	tube->tube1 = ft_strsub(line, 0, i++);

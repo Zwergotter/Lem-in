@@ -6,7 +6,7 @@
 /*   By: edeveze <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 21:00:13 by edeveze           #+#    #+#             */
-/*   Updated: 2017/09/28 21:10:35 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/10/01 16:12:39 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,7 @@
 
 void	error(t_error error)
 {
-	if (error == MEM)
-		ft_putstr_fd("Memory allocation failed", 2);
-	if (error == NB_ANTS)
-		ft_putstr_fd("Wrong number of ants given", 2);
 	if (error == NOT_NB)
-		ft_putstr_fd("Invalid number, must only contains digits", 2);
+		ft_putstr_fd("Invalid number, must only contains digits and be positiv", 2);
 	exit(0);
 }
