@@ -6,13 +6,13 @@
 /*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 17:05:53 by edeveze           #+#    #+#             */
-/*   Updated: 2017/10/01 16:34:07 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/10/02 18:37:40 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/lem_in.h"
 
-char	*join_line(char *s1, char *s2, int nb)
+char		*join_line(char *s1, char *s2)
 {
 	char	*new;
 	size_t	len;
@@ -24,10 +24,8 @@ char	*join_line(char *s1, char *s2, int nb)
 	new = ft_strcpy(new, s1);
 	new = ft_strcat(new, s2);
 	new = ft_strcat(new, "\n");
-	if (nb == 1 || nb == 3)
-		free(s1);
-	if (nb == 2 || nb == 3)
-		free(s2);
+	free(s1);
+	free(s2);
 	return (new);
 }
 
@@ -54,13 +52,14 @@ int			hash_line(t_data *data, char **line)
 	{
 		if ((*line)[2] == 'e')
 			i = 1;
-		data->all = join_line(data->all, *line, 3);
+		data->all = join_line(data->all, *line);
 		get_next_line(0, line);
-		while (ft_strcmp("##start", *line) == 0 || ft_strcmp("##end", *line) == 0)
+		while (ft_strcmp("##start", *line) == 0 ||
+			ft_strcmp("##end", *line) == 0)
 		{
-			if (((*line)[2] == 's' && i == 1) || ((*line)[2] == 'e' &&  i == 0))
+			if (((*line)[2] == 's' && i == 1) || ((*line)[2] == 'e' && i == 0))
 				i = 2;
-			data->all = join_line(data->all, *line, 3);
+			data->all = join_line(data->all, *line);
 			get_next_line(0, line);
 		}
 		room(data, *line, i);
@@ -76,7 +75,7 @@ void		set_values(t_data *data, char *number)
 	data->tubes = NULL;
 	data->all = ft_strdup("");
 	data->n_ants = ft_atoi(number);
-	data->all = join_line(data->all, number, 3);
+	data->all = join_line(data->all, number);
 }
 
 void		init_data(t_data *data)
@@ -103,6 +102,6 @@ void		init_data(t_data *data)
 	{
 		ret = (line[0] == '#') ? hash_line(data, &line) : other(data, line);
 		if (ret)
-			data->all = join_line(data->all, line, 3);
+			data->all = join_line(data->all, line);
 	}
 }

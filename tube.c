@@ -6,7 +6,7 @@
 /*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 17:25:27 by edeveze           #+#    #+#             */
-/*   Updated: 2017/10/01 17:53:33 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/10/02 18:42:46 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		addlast_tube(t_data *data, t_tubes *new)
 	t_tubes	*lst;
 	t_rooms *room;
 	int		i;
-	int 	j;
+	int		j;
 
 	lst = data->tubes;
 	room = data->rooms;
@@ -46,7 +46,7 @@ int		addlast_tube(t_data *data, t_tubes *new)
 
 int		tube(t_data *data, char *line)
 {
-	int 	i;
+	int		i;
 	int		j;
 	t_tubes	*tube;
 

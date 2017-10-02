@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   room.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: edeveze <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 17:37:43 by edeveze           #+#    #+#             */
-/*   Updated: 2017/10/01 16:12:30 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/10/02 18:41:15 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/lem_in.h"
 
-int		len_tab(char **tmp)
+int			len_tab(char **tmp)
 {
-	int i;
+	int		i;
 
 	i = 0;
 	while (tmp[i])
@@ -22,7 +22,7 @@ int		len_tab(char **tmp)
 	return (i);
 }
 
-void	new(t_rooms *last, char **tmp, t_data *data, int i)
+void		new(t_rooms *last, char **tmp, t_data *data, int i)
 {
 	t_rooms *new;
 
@@ -47,7 +47,7 @@ void	new(t_rooms *last, char **tmp, t_data *data, int i)
 ** its name.
 */
 
-int		to_check(t_data *data, char **tmp, int i)
+void		to_check(t_data *data, char **tmp, int i)
 {
 	t_rooms *lst;
 
@@ -59,7 +59,7 @@ int		to_check(t_data *data, char **tmp, int i)
 			lst->name = ft_strdup(tmp[0]);
 			data->start = (i == 1 || i == 2) ? data->start : lst;
 			data->end = (i == 0 || i == 2) ? data->end : lst;
-			return (1);
+			return ;
 		}
 		if (!ft_strcmp(lst->name, tmp[0]))
 		{
@@ -67,7 +67,7 @@ int		to_check(t_data *data, char **tmp, int i)
 			lst->coord_y = ft_atoi(tmp[2]);
 			data->start = (i == 1 || i == 2) ? lst : data->start;
 			data->end = (i == 0 || i == 2) ? lst : data->end;
-			return (1);
+			return ;
 		}
 		if (lst->next)
 			lst = lst->next;
@@ -75,12 +75,11 @@ int		to_check(t_data *data, char **tmp, int i)
 			break ;
 	}
 	new(lst, tmp, data, i);
-	return (0);
 }
 
-void	free_tab(char **t)
+void		free_tab(char **t)
 {
-	int i;
+	int		i;
 
 	i = -1;
 	while (t[++i])
@@ -88,7 +87,7 @@ void	free_tab(char **t)
 	free(t);
 }
 
-int		room(t_data *data, char *line, int i)
+int			room(t_data *data, char *line, int i)
 {
 	char	**tmp;
 
@@ -96,7 +95,6 @@ int		room(t_data *data, char *line, int i)
 		error(MEM);
 	if (len_tab(tmp) != 3)
 		return (0);
-	// verif tmp
 	to_check(data, tmp, i);
 	free_tab(tmp);
 	return (1);
