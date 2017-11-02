@@ -6,7 +6,7 @@
 /*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 17:05:53 by edeveze           #+#    #+#             */
-/*   Updated: 2017/10/31 15:03:02 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/11/02 16:28:21 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void		set_values(t_data *data, char *number)
 	data->rooms = NULL;
 	data->imax = 0;
 	data->n_ants = ft_atoi(number);
+	data->all = NULL;
 	data->all = join_line(data->all, number);
 }
 

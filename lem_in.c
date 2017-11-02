@@ -6,7 +6,7 @@
 /*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 21:27:54 by edeveze           #+#    #+#             */
-/*   Updated: 2017/10/31 14:55:58 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/11/02 16:31:49 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "includes/lem_in.h"
@@ -45,7 +45,7 @@ int	dispatching_ants(t_data *data, t_rooms *start, int count)
 		j = -1;
 		while (start->links[++j])
 		{
-			if (start->links[j]->indice == indice && !start->links[j]->ant)
+			if (start->ant && start->links[j]->indice == indice && !start->links[j]->ant)
 			{
 				start->links[j]->ant = ant;
 				one_answer(ant, start->links[j]->name, count);
