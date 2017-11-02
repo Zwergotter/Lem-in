@@ -6,7 +6,7 @@
 /*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 15:05:00 by edeveze           #+#    #+#             */
-/*   Updated: 2017/10/01 16:26:18 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/10/31 15:11:26 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,22 @@ int		main(void)
 
 	data = palloc(sizeof(t_data));
 	init_data(data);
+	ft_putstr(data->all);
+	ft_putchar('\n');
+	if (data->error)
+		error(data->error);
+	if (data->start == data->end && data->start)
+		error(SAME);
+	if (data->start && data->end)
+	{
+		if (data->start->links && data->end->links)
+			lem_in(data);
+		else
+			error(NO_PATH);
+	}
+	else
+		ft_putstr("ERROR\n");
+	// ordering(data);
 	// ft_putstr_fd(data->start, 2);
 	// ft_putchar_fd('\n', 2);
 	// ft_putstr_fd(data->end, 2);
@@ -40,7 +56,5 @@ int		main(void)
 	// 	ft_putnbr_fd(data->rooms->coord_y, 2);
 	// 	data->rooms = data->rooms->next;
 	// }
-	ft_putchar_fd('\n', 2);
-	ft_putstr_fd(data->all, 2);
 	return (0);
 }

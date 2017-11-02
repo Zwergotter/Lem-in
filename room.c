@@ -6,7 +6,7 @@
 /*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 17:37:43 by edeveze           #+#    #+#             */
-/*   Updated: 2017/10/02 18:41:15 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/10/31 15:08:19 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@ void		new(t_rooms *last, char **tmp, t_data *data, int i)
 	new->name = ft_strdup(tmp[0]);
 	new->coord_x = ft_atoi(tmp[1]);
 	new->coord_y = ft_atoi(tmp[2]);
+	new->indice = -1;
+	new->ant = 0;
+	new->links = NULL;
 	new->next = NULL;
 	if (!last)
 		data->rooms = new;
@@ -57,8 +60,8 @@ void		to_check(t_data *data, char **tmp, int i)
 		if (lst->coord_x == ft_atoi(tmp[1]) && lst->coord_y == ft_atoi(tmp[2]))
 		{
 			lst->name = ft_strdup(tmp[0]);
-			data->start = (i == 1 || i == 2) ? data->start : lst;
-			data->end = (i == 0 || i == 2) ? data->end : lst;
+			data->start = (i == 1 || i == 2) ? lst : data->start;
+			data->end = (i == 0 || i == 2) ? lst : data->end;
 			return ;
 		}
 		if (!ft_strcmp(lst->name, tmp[0]))
@@ -93,8 +96,16 @@ int			room(t_data *data, char *line, int i)
 
 	if (!(tmp = ft_strsplit(line, ' ')))
 		error(MEM);
-	if (len_tab(tmp) != 3)
+	if (tmp[0][0] == 'L'|| len_tab(tmp) != 3)
+	{
+		data->error = NAME;
 		return (0);
+	}
+	if (len_tab(tmp) != 3)
+	{
+		data->error = LEN;
+		return (0);
+	}
 	to_check(data, tmp, i);
 	free_tab(tmp);
 	return (1);

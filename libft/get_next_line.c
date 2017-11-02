@@ -6,11 +6,11 @@
 /*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/18 17:32:13 by edeveze           #+#    #+#             */
-/*   Updated: 2017/01/25 15:22:36 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/10/05 22:16:39 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "includes/libft.h"
 
 t_struct	*multi(t_struct **s, t_struct *e, int fd)
 {
@@ -57,7 +57,7 @@ int			get_next_line(const int fd, char **line)
 				return (-1);
 		e->bf[e->ret] = 0;
 		e->l = ft_strchr(e->bf, '\n') ? ft_strchr(e->bf, '\n') - e->bf
-		: ft_strlen(e->bf);
+		: (int)ft_strlen(e->bf);
 		e->d = !e->bf[0] || ft_strchr(e->bf, '\n') ? 1 : 0;
 		ft_memcpy(e->tmp, e->bf, e->l);
 		e->tmp[e->l] = 0;

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: edeveze <marvin@42.fr>                     +#+  +:+       +#+         #
+#    By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/21 15:08:58 by edeveze           #+#    #+#              #
-#    Updated: 2017/09/28 20:29:42 by edeveze          ###   ########.fr        #
+#    Updated: 2017/10/05 22:24:25 by edeveze          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,11 +14,12 @@
 NAME = lem-in
 
 # Sources
-SRC = 	main.c\
-		error.c\
-		parsing.c\
-		room.c\
-		tube.c\
+SRC = 	main.c \
+		lem_in.c \
+		error.c \
+		parsing.c \
+		room.c \
+		tube.c
 
 # Includes
 INC = -I includes -I libft/includes
@@ -44,7 +45,7 @@ lib:
 	@make -C libft
 
 $(NAME) : $(OBJ)
-	@$(CC) $(CFLAGS) $(PRGFLAGS) -o $@ $(OBJ)
+	@$(CC) $(CFLAGS) -o $@ $(OBJ) $(PRGFLAGS)
 	@echo "$(CYAN)██╗     ███████╗███╗   ███╗    ██╗███╗   ██╗"
 	@echo "██║     ██╔════╝████╗ ████║    ██║████╗  ██║"
 	@echo "██║     █████╗  ██╔████╔██║    ██║██╔██╗ ██║"
@@ -55,7 +56,7 @@ $(NAME) : $(OBJ)
                                                             
 
 %.o: %.c libft/libft.a
-	@$(CC) $(CFLAGS) $(INC) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@ $(INC)
 
 clean :
 	@rm -rf $(OBJ)

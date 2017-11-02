@@ -6,9 +6,10 @@
 /*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 15:05:29 by edeveze           #+#    #+#             */
-/*   Updated: 2017/10/01 16:35:10 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/10/31 15:06:51 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef LEM_IN_H
 # define LEM_IN_H
@@ -17,7 +18,7 @@
 
 typedef	enum 		e_error
 {
-	MEM, NOT_NB
+	NONE, MEM, NOT_NB, NAME, LEN, SAME, NO_PATH, ERROR
 }					t_error;
 
 typedef struct		s_rooms
@@ -25,24 +26,21 @@ typedef struct		s_rooms
 	char			*name;
 	int				coord_x;
 	int				coord_y;
+	struct s_rooms	**links;
 	struct s_rooms	*next;
+	int				indice;
+	int				ant;
 }					t_rooms;
-
-typedef struct		s_tubes
-{
-	char			*tube1;
-	char			*tube2;
-	struct s_tubes	*next;
-}					t_tubes;
 
 typedef struct		s_data
 {
+	t_error			error;
 	t_rooms			*start;
 	t_rooms			*end;
 	int				n_ants;
 	t_rooms			*rooms;
-	t_tubes			*tubes;
 	char			*all;
+	int				imax;
 }					t_data;
 
 int		tube(t_data *data, char *line);
@@ -54,5 +52,7 @@ void	init_data(t_data *data);
 void	error(t_error error);
 
 void	free_tab(char **t);
+
+void	lem_in(t_data *data);
 
 #endif

@@ -1,4 +1,4 @@
-32i
+5
 ##start
 debut 1 0
 ##end
@@ -6,6 +6,11 @@ fin 5 0
 #comment
 mid 9 0
 extrem_mid 13 1
+yop 5 6
+glups 2 3
 debut-mid
-mid-extrem_mid
+debut-yop
+mid-glups
+extrem_mid-yop
+glups-fin
 extrem_mid-fin

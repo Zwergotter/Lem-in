@@ -6,64 +6,86 @@
 /*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 17:25:27 by edeveze           #+#    #+#             */
-/*   Updated: 2017/10/02 18:42:46 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/10/30 17:17:21 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/lem_in.h"
 
-int		addlast_tube(t_data *data, t_tubes *new)
+t_rooms		**realloc_rooms(t_rooms **tab, t_rooms *link)
 {
-	t_tubes	*lst;
-	t_rooms *room;
-	int		i;
-	int		j;
+	int 	i;
+	t_rooms **new;
 
-	lst = data->tubes;
+	i = 0;
+	while (tab && tab[i])
+	{
+		if (tab[i] == link)
+			return (tab);
+		i++;
+	}
+	new = palloc(sizeof(t_rooms *) * (i + 2));
+	i = 0;
+	while (tab && tab[i])
+	{
+		new[i] = tab[i];
+		++i;
+	}
+	new[i] = link;
+	new[i + 1]  = 0;
+	free(tab);
+	return (new);
+}
+
+int			giving_links(t_data *data, char *room1, char *room2)
+{
+	t_rooms *room;
+	t_rooms	*first;
+	t_rooms	*second;
+
 	room = data->rooms;
-	i = 1;
-	j = 1;
+	first = NULL;
+	second = NULL;
 	while (room)
 	{
-		if (!ft_strcmp(new->room1, room->name))
-			i = 0;
-		if (!ft_strcmp(new->room2, room->name))
-			j = 0;
+		if (!ft_strcmp(room1, room->name))
+			first = room;
+		if (!ft_strcmp(room2, room->name))
+			second = room;
 		room = room->next;
 	}
-	if (i || j)
+	if (!first || !second)
 		return (0);
-	if (lst == 0)
-	{
-		data->tubes = new;
-		return (1);
-	}
-	while (lst->next)
-		lst = lst->next;
-	lst->next = new;
+	first->links = realloc_rooms(first->links, second);
+	second->links = realloc_rooms(second->links, first);
+	free(room1);
+	free(room2);
 	return (1);
 }
 
-int		tube(t_data *data, char *line)
+int			tube(t_data *data, char *line)
 {
 	int		i;
 	int		j;
-	t_tubes	*tube;
+	char 	*room1;
+	char 	*room2;
 
 	i = 0;
 	j = 0;
-	tube = palloc(sizeof(t_tubes));
 	while (line[i] && line[i] != '-')
 		i++;
-	tube->room1 = ft_strsub(line, 0, i++);
+	room1 = ft_strsub(line, 0, i++);
 	j = i;
 	while (line[j] && line[j] != '-')
 		j++;
 	if (j == i || line[j] == '-')
 		return (0);
-	tube->room2 = ft_strsub(line, i, j - i);
-	tube->next = NULL;
-	if (!ft_strcmp(tube->room1, tube->room2))
-		return (0);
-	return (addlast_tube(data, tube));
+	room2 = ft_strsub(line, i, j - i);
+	if (!ft_strcmp(room1, room2))
+	{
+		free(room1);
+		free(room2);
+		return (1);
+	}
+	return (giving_links(data, room1, room2));
 }

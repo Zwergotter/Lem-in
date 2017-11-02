@@ -6,7 +6,7 @@
 /*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/06 18:48:47 by edeveze           #+#    #+#             */
-/*   Updated: 2017/08/21 18:56:28 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/10/05 22:15:03 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <sys/uio.h>
 # include <errno.h>
 # include <stdio.h>
+# include <stdint.h>
 
 # define BUFF_SIZE 10
 
