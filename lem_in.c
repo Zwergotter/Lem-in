@@ -6,7 +6,7 @@
 /*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 21:27:54 by edeveze           #+#    #+#             */
-/*   Updated: 2017/11/02 16:31:49 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/11/02 22:11:38 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "includes/lem_in.h"
@@ -130,6 +130,51 @@ void	set_indice(t_rooms *r, int i, t_data *data)
 	}
 }
 
+void	sort_links(t_data *data)
+{
+	int i;
+	t_rooms *tmp;
+	t_rooms *room;
+
+	i = -1;
+	tmp = data->rooms;
+	room = tmp;
+	while (tmp)
+	{
+		i = -1;
+		while(tmp->links[++i])
+		{
+			if (tmp->links[i + 1] && tmp->links[i]->order > tmp->links[i + 1]->order)
+			{
+				room = tmp->links[i];
+				tmp->links[i] = tmp->links[i + 1];
+				tmp->links[i + 1] = room;
+			}
+		}
+		tmp = tmp->next;
+	}
+}
+
+void	ordering(t_data *data)
+{
+	int  i;
+	t_rooms *tmp;
+
+	i = -1;
+	tmp = data->rooms;
+	while (tmp)
+	{
+		i = -1;
+		while(tmp->links[++i])
+		{
+			if (tmp->links[i]->indice < tmp->indice)
+				tmp->order++;
+		}
+		tmp = tmp->next;
+	}
+	sort_links(data);
+}
+
 void	finish(t_data *data)
 {
 	int i;
@@ -151,6 +196,7 @@ void	lem_in(t_data *data)
 	if (data->start->indice == -1)
 		error(NO_PATH);
 	data->start->ant = data->n_ants;
+	ordering(data);
 	if (data->start->indice == 1)
 	{
 		finish(data);
