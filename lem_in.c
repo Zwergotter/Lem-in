@@ -6,7 +6,7 @@
 /*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 21:27:54 by edeveze           #+#    #+#             */
-/*   Updated: 2017/11/02 22:11:38 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/11/03 21:26:20 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "includes/lem_in.h"
@@ -142,13 +142,14 @@ void	sort_links(t_data *data)
 	while (tmp)
 	{
 		i = -1;
-		while(tmp->links[++i])
+		while (tmp->links[++i])
 		{
 			if (tmp->links[i + 1] && tmp->links[i]->order > tmp->links[i + 1]->order)
 			{
 				room = tmp->links[i];
 				tmp->links[i] = tmp->links[i + 1];
 				tmp->links[i + 1] = room;
+				i = -1;
 			}
 		}
 		tmp = tmp->next;
@@ -175,6 +176,30 @@ void	ordering(t_data *data)
 	sort_links(data);
 }
 
+void swapping(t_rooms *set, t_rooms *first, t_rooms *second)
+{
+	set->next = second;
+	first->next = first;
+	first->next = second->next;
+	second->next = first;
+}
+
+void	ordering_rooms(t_data *data)
+{
+	t_rooms *tmp;
+
+	tmp = data->rooms;
+	while (tmp->next)
+	{
+		if (tmp->next->next && tmp->next->order > tmp->next->next->order)
+		{
+			swapping(tmp, tmp->next, tmp->next->next);
+			tmp = data->rooms;
+		}
+		tmp = tmp->next;
+	}
+}
+
 void	finish(t_data *data)
 {
 	int i;
@@ -197,6 +222,7 @@ void	lem_in(t_data *data)
 		error(NO_PATH);
 	data->start->ant = data->n_ants;
 	ordering(data);
+	ordering_rooms(data);
 	if (data->start->indice == 1)
 	{
 		finish(data);
