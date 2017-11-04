@@ -6,7 +6,7 @@
 /*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 21:27:54 by edeveze           #+#    #+#             */
-/*   Updated: 2017/11/03 21:26:20 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/11/04 23:16:02 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "includes/lem_in.h"
@@ -142,7 +142,7 @@ void	sort_links(t_data *data)
 	while (tmp)
 	{
 		i = -1;
-		while (tmp->links[++i])
+		while (tmp->indice > -1 && tmp->links[++i])
 		{
 			if (tmp->links[i + 1] && tmp->links[i]->order > tmp->links[i + 1]->order)
 			{
@@ -166,9 +166,9 @@ void	ordering(t_data *data)
 	while (tmp)
 	{
 		i = -1;
-		while(tmp->links[++i])
+		while (tmp->indice > -1 && tmp->links[++i])
 		{
-			if (tmp->links[i]->indice < tmp->indice)
+			if (tmp->links[i]->indice && tmp->links[i]->indice < tmp->indice)
 				tmp->order++;
 		}
 		tmp = tmp->next;
