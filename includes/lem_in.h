@@ -6,7 +6,7 @@
 /*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 15:05:29 by edeveze           #+#    #+#             */
-/*   Updated: 2017/11/02 20:42:01 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/11/06 17:24:27 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct		s_rooms
 	struct s_rooms	**links;
 	struct s_rooms	*next;
 	int				indice;
+	int				istart;
 	int				ant;
 	int				order;
 }					t_rooms;

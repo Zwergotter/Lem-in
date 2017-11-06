@@ -6,7 +6,7 @@
 /*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 17:37:43 by edeveze           #+#    #+#             */
-/*   Updated: 2017/11/04 23:01:27 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/11/06 17:25:49 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void		new(t_rooms *last, char **tmp, t_data *data, int i)
 	new->coord_x = ft_atoi(tmp[1]);
 	new->coord_y = ft_atoi(tmp[2]);
 	new->indice = -1;
+	new->istart = -1;
 	new->ant = 0;
 	new->order = 0;
 	new->links = NULL;

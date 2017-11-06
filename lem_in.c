@@ -6,7 +6,7 @@
 /*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 21:27:54 by edeveze           #+#    #+#             */
-/*   Updated: 2017/11/04 23:16:02 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/11/06 17:25:18 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "includes/lem_in.h"
@@ -45,7 +45,7 @@ int	dispatching_ants(t_data *data, t_rooms *start, int count)
 		j = -1;
 		while (start->links[++j])
 		{
-			if (start->ant && start->links[j]->indice == indice && !start->links[j]->ant)
+			if (start->ant && start->links[j]->indice == indice && !start->links[j]->ant && start->ant >= start->indice - start->links[j]->indice)
 			{
 				start->links[j]->ant = ant;
 				one_answer(ant, start->links[j]->name, count);
@@ -110,6 +110,22 @@ void	final(t_data *data)
 	ft_putchar('\n');
 }
 
+void	set_istart(t_rooms *r, int i, t_data *data)
+{
+	int c;
+
+	c = -1;
+	while (r->links[++c])
+	{
+		if (r->links[c]->istart > i || r->links[c]->istart == -1)
+		{
+			r->links[c]->istart = i;
+			if (r->links[c] != data->end)
+				set_istart(r->links[c], i + 1, data);
+		}
+	}
+}
+
 void	set_indice(t_rooms *r, int i, t_data *data)
 {
 	int c;
@@ -117,7 +133,7 @@ void	set_indice(t_rooms *r, int i, t_data *data)
 	c = -1;
 	while (r->links[++c])
 	{
-		if (r->links[c]->indice > i || r->links[c]->indice == -1)
+		if ((r->istart > r->links[c]->istart || r == data->end) && (r->links[c]->indice > i || r->links[c]->indice == -1))
 		{
 			r->links[c]->indice = i;
 			if (r->links[c] != data->start)
@@ -217,6 +233,8 @@ void	finish(t_data *data)
 void	lem_in(t_data *data)
 {
 	data->end->indice = 0;
+	data->start->istart = 0;
+	set_istart(data->start, 1, data);
 	set_indice(data->end, 1, data);
 	if (data->start->indice == -1)
 		error(NO_PATH);
