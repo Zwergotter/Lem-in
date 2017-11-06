@@ -6,7 +6,7 @@
 /*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 17:37:43 by edeveze           #+#    #+#             */
-/*   Updated: 2017/11/06 17:25:49 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/11/06 21:07:38 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,10 +74,9 @@ void		to_check(t_data *data, char **tmp, int i)
 			data->end = (i == 0 || i == 2) ? lst : data->end;
 			return ;
 		}
-		if (lst->next)
-			lst = lst->next;
-		else
+		if (!lst->next)
 			break ;
+		lst = lst->next;
 	}
 	new(lst, tmp, data, i);
 }

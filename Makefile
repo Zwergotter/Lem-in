@@ -6,7 +6,7 @@
 #    By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/21 15:08:58 by edeveze           #+#    #+#              #
-#    Updated: 2017/10/05 22:24:25 by edeveze          ###   ########.fr        #
+#    Updated: 2017/11/06 20:49:59 by edeveze          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,8 +18,10 @@ SRC = 	main.c \
 		lem_in.c \
 		error.c \
 		parsing.c \
+		ordering.c \
 		room.c \
-		tube.c
+		tube.c \
+		set_data.c
 
 # Includes
 INC = -I includes -I libft/includes

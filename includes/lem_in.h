@@ -6,7 +6,7 @@
 /*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 15:05:29 by edeveze           #+#    #+#             */
-/*   Updated: 2017/11/06 17:24:27 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/11/06 20:55:34 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,10 @@ void	init_data(t_data *data);
 void	error(t_error error);
 
 void	free_tab(char **t);
+
+void	ordering(t_data *data);
+
+void	set_data(t_data *data);
 
 void	lem_in(t_data *data);
 
