@@ -6,7 +6,7 @@
 /*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 21:00:13 by edeveze           #+#    #+#             */
-/*   Updated: 2017/11/06 21:12:46 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/11/07 11:52:01 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,7 @@ void	error(t_error error)
 		ft_putstr_fd("\033[0;31mNot enough data for a room\n\033[0m", 2);
 	if (error == NAME)
 		ft_putstr_fd("\033[0;31mIllegal room's name\n\033[0m", 2);
+	if (error == ILLEGAL)
+		ft_putstr_fd("\033[0;31mLast line not working\n\033[0m", 2);
 	exit(0);
 }

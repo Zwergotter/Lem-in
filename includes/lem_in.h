@@ -6,7 +6,7 @@
 /*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 15:05:29 by edeveze           #+#    #+#             */
-/*   Updated: 2017/11/07 11:19:26 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/11/07 11:51:33 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 typedef	enum		e_error
 {
-	NONE, MEM, NOT_NB, NAME, LEN, SAME, NO_PATH, ERROR
+	NONE, MEM, NOT_NB, NAME, LEN, SAME, NO_PATH, ERROR, ILLEGAL
 }					t_error;
 
 typedef struct		s_rooms
