@@ -6,7 +6,7 @@
 /*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 17:05:53 by edeveze           #+#    #+#             */
-/*   Updated: 2017/11/07 13:55:25 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/11/07 14:23:40 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,8 @@ void		set_values(t_data *data, char *number)
 
 void		ant_number(t_data *data)
 {
-	char *number;
-	char buf[2];
+	char	*number;
+	char	buf[2];
 	int		ret;
 
 	buf[1] = 0;
