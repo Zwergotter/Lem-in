@@ -6,7 +6,7 @@
 /*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 21:27:54 by edeveze           #+#    #+#             */
-/*   Updated: 2017/11/07 11:17:43 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/11/07 15:12:37 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int			dispatching_ants(t_data *data, t_rooms *start, int count)
 		{
 			if (start->ant && start->links[j]->indice == indice &&
 				!start->links[j]->ant &&
-				start->ant >= start->indice - start->links[j]->indice)
+				start->ant > start->links[j]->indice - start->indice)
 			{
 				start->links[j]->ant = ant;
 				one_answer(ant, start->links[j]->name, count);
