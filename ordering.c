@@ -6,15 +6,15 @@
 /*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 20:50:08 by edeveze           #+#    #+#             */
-/*   Updated: 2017/11/06 20:53:49 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/11/07 10:15:57 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/lem_in.h"
 
-void	sort_links(t_data *data)
+void		sort_links(t_data *data)
 {
-	int i;
+	int		i;
 	t_rooms *tmp;
 	t_rooms *room;
 
@@ -39,9 +39,9 @@ void	sort_links(t_data *data)
 	}
 }
 
-void	ordering_indice(t_data *data)
+void		ordering_indice(t_data *data)
 {
-	int  i;
+	int		i;
 	t_rooms *tmp;
 
 	i = -1;
@@ -59,7 +59,7 @@ void	ordering_indice(t_data *data)
 	sort_links(data);
 }
 
-void swapping(t_rooms *set, t_rooms *first, t_rooms *second)
+void		swapping(t_rooms *set, t_rooms *first, t_rooms *second)
 {
 	set->next = second;
 	first->next = first;
@@ -67,7 +67,7 @@ void swapping(t_rooms *set, t_rooms *first, t_rooms *second)
 	second->next = first;
 }
 
-void	ordering_rooms(t_data *data)
+void		ordering_rooms(t_data *data)
 {
 	t_rooms *tmp;
 
@@ -83,7 +83,7 @@ void	ordering_rooms(t_data *data)
 	}
 }
 
-void	ordering(t_data *data)
+void		ordering(t_data *data)
 {
 	data->start->ant = data->n_ants;
 	ordering_indice(data);

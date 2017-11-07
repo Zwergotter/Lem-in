@@ -6,7 +6,7 @@
 /*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 15:05:00 by edeveze           #+#    #+#             */
-/*   Updated: 2017/11/06 20:59:30 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/11/07 10:14:37 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int		main(void)
 	if (data->error)
 		error(data->error);
 	if (data->start == data->end && data->start)
-		error(SAME);	
+		error(SAME);
 	if (data->start && data->end)
 	{
 		if (data->start->links && data->end->links)

@@ -6,7 +6,7 @@
 /*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 17:37:43 by edeveze           #+#    #+#             */
-/*   Updated: 2017/11/06 21:07:38 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/11/07 11:11:13 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int			room(t_data *data, char *line, int i)
 
 	if (!(tmp = ft_strsplit(line, ' ')))
 		error(MEM);
-	if (tmp[0][0] == 'L'|| len_tab(tmp) != 3)
+	if (tmp[0][0] == 'L' || len_tab(tmp) != 3)
 	{
 		data->error = NAME;
 		return (0);

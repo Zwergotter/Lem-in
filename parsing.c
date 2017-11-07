@@ -6,7 +6,7 @@
 /*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 17:05:53 by edeveze           #+#    #+#             */
-/*   Updated: 2017/11/02 16:28:21 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/11/07 11:09:29 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int			other(t_data *data, char *line)
 	i = 0;
 	while (line[i] && line[i] != ' ' && line[i] != '-')
 		i++;
-	if (line[i] == '-' && tube(data, line))			
+	if (line[i] == '-' && tube(data, line))
 		return (1);
 	if (line[i] == ' ' && room(data, line, -1))
 		return (1);
@@ -100,7 +100,7 @@ void		init_data(t_data *data)
 	}
 	ret = 1;
 	set_values(data, number);
-	while (ret && get_next_line(0, &line) && ft_isprint(line[0]))		
+	while (ret && get_next_line(0, &line) && ft_isprint(line[0]))
 	{
 		ret = (line[0] == '#') ? hash_line(data, &line) : other(data, line);
 		if (ret)

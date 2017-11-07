@@ -6,7 +6,7 @@
 /*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 17:25:27 by edeveze           #+#    #+#             */
-/*   Updated: 2017/10/30 17:17:21 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/11/07 11:12:40 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_rooms		**realloc_rooms(t_rooms **tab, t_rooms *link)
 {
-	int 	i;
+	int		i;
 	t_rooms **new;
 
 	i = 0;
@@ -32,7 +32,7 @@ t_rooms		**realloc_rooms(t_rooms **tab, t_rooms *link)
 		++i;
 	}
 	new[i] = link;
-	new[i + 1]  = 0;
+	new[i + 1] = 0;
 	free(tab);
 	return (new);
 }
@@ -67,8 +67,8 @@ int			tube(t_data *data, char *line)
 {
 	int		i;
 	int		j;
-	char 	*room1;
-	char 	*room2;
+	char	*room1;
+	char	*room2;
 
 	i = 0;
 	j = 0;

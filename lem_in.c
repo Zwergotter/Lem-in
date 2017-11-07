@@ -6,7 +6,7 @@
 /*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 21:27:54 by edeveze           #+#    #+#             */
-/*   Updated: 2017/11/06 21:02:39 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/11/07 11:17:43 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 ** Here to display which ant moves to where.
 */
 
-void	one_answer(int ant, char *room, int i)
+void		one_answer(int ant, char *room, int i)
 {
 	if (i)
 		ft_putchar(' ');
@@ -32,12 +32,12 @@ void	one_answer(int ant, char *room, int i)
 ** some in start.
 */
 
-int	dispatching_ants(t_data *data, t_rooms *start, int count)
+int			dispatching_ants(t_data *data, t_rooms *start, int count)
 {
-	int ant;
-	int j;
-	int indice;
-	
+	int		ant;
+	int		j;
+	int		indice;
+
 	j = -1;
 	indice = start->indice - 2;
 	ant = data->n_ants - start->ant + 1;
@@ -67,9 +67,9 @@ int	dispatching_ants(t_data *data, t_rooms *start, int count)
 ** is the end or there's no ant in, meaning that we can move an ant in it.
 */
 
-int	checking_each(t_data *data, t_rooms *r, int i, int count)
+int			checking_each(t_data *data, t_rooms *r, int i, int count)
 {
-	int j;
+	int		j;
 
 	j = -1;
 	while (r->links[++j])
@@ -90,10 +90,10 @@ int	checking_each(t_data *data, t_rooms *r, int i, int count)
 	return (count);
 }
 
-void	final(t_data *data)
+void		final(t_data *data)
 {
-	int i;
-	int count;
+	int		i;
+	int		count;
 	t_rooms *r;
 
 	i = 0;
@@ -114,9 +114,9 @@ void	final(t_data *data)
 	ft_putchar('\n');
 }
 
-void	lem_in(t_data *data)
+void		lem_in(t_data *data)
 {
-	int	i;
+	int		i;
 
 	i = 1;
 	set_data(data);
