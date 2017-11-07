@@ -6,7 +6,7 @@
 /*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 17:05:53 by edeveze           #+#    #+#             */
-/*   Updated: 2017/11/07 14:23:40 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/11/07 14:24:53 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ int			other(t_data *data, char *line)
 	int		i;
 
 	i = 0;
-	ft_putstr("\033[0;31m\nHere and line 0 is: \n\033[0m");
-	ft_putchar(line[0]);
 	while (line[i] && line[i] != ' ' && line[i] != '-')
 		i++;
 	if (line[i] == '-' && tube(data, line))
