@@ -15,7 +15,9 @@
 void	error(t_error error)
 {
 	if (error == NOT_NB)
-		ft_putstr_fd(RED"Nope, that's not an acceptable ants' number.\n", 2);
+		ft_putstr_fd(RED"Nope, the first line isn't a positive integer.\n", 2);
+	if (error == ZERO)
+		ft_putstr_fd(RED"You gave me 0 ant. How can I move them then?\n", 2);
 	if (error == MEM)
 		ft_putstr_fd(RED"Memory allocation failed\n", 2);
 	if (error == SAME)

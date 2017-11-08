@@ -18,7 +18,8 @@
 
 typedef	enum		e_error
 {
-	NONE, MEM, NOT_NB, SAME, NO_PATH, ERROR, START_END, START, END, LINK, ROOM
+	NONE, MEM, NOT_NB, ZERO, SAME, NO_PATH, ERROR, START_END, START, END, LINK,
+	ROOM
 }					t_error;
 
 typedef struct		s_rooms
