@@ -94,11 +94,25 @@ void		free_tab(char **t)
 int			room(t_data *data, char *line, int i)
 {
 	char	**tmp;
+	int		x;
+	int		y;
 
+	x = 1;
+	y = 0;
 	if (!(tmp = ft_strsplit(line, ' ')))
 		error(MEM);
 	if (tmp[0][0] == 'L' || tmp[0][0] == '#' || data->link || len_tab(tmp) != 3)
 		return (0);
+	while (x < 3)
+	{
+		y = 0;
+		while (tmp[x][y])
+		{
+			if (!ft_isdigit(tmp[x][y++]))
+				return (0);
+		}
+		x++;
+	}
 	to_check(data, tmp, i);
 	free_tab(tmp);
 	return (1);
