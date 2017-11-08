@@ -39,6 +39,8 @@ void	error(t_error error)
 
 void	what_error(t_data *data)
 {
+	if (!data->rooms)
+		error(ROOM);
 	if (!data->start && !data->end)
 		error(START_END);
 	if (!data->start)
@@ -49,6 +51,4 @@ void	what_error(t_data *data)
 		error(LINK);
 	if (!data->end->links)
 		error(NO_PATH);
-	if (!data->rooms)
-		error(ROOM);
 }
