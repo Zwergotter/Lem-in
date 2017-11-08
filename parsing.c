@@ -79,6 +79,8 @@ void		set_values(t_data *data, char *number)
 	data->imax = 0;
 	data->link = 0;
 	data->n_ants = ft_atoi(number);
+	if (!data->n_ants)
+		error(NOT_NB);
 	data->all = NULL;
 	data->all = join_line(data->all, number);
 }
