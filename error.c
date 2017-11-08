@@ -19,21 +19,21 @@ void	error(t_error error)
 	if (error == ZERO)
 		ft_putstr_fd(RED"You gave me 0 ant. How can I move them then?\n", 2);
 	if (error == MEM)
-		ft_putstr_fd(RED"Memory allocation failed\n", 2);
+		ft_putstr_fd(GRN"Memory allocation failed\n", 2);
 	if (error == SAME)
 		ft_putstr_fd(PNK"Start and End are the same room. Duh.\n", 2);
 	if (error == NO_PATH)
-		ft_putstr_fd(RED"No path linking Start and End.\n", 2);
+		ft_putstr_fd(PNK"No path linking Start and End.\n", 2);
 	if (error == START_END)
-		ft_putstr_fd(RED"Start and End don't exist. What did you expect?\n", 2);
+		ft_putstr_fd(PNK"Start and End don't exist. What did you expect?\n", 2);
 	if (error == START)
-		ft_putstr_fd(RED"ERROR 404: Start not found.\n", 2);
+		ft_putstr_fd(PNK"ERROR 404: Start not found.\n", 2);
 	if (error == END)
-		ft_putstr_fd(RED"No End no lem-in.\n", 2);
+		ft_putstr_fd(PNK"No End no lem-in.\n", 2);
 	if (error == LINK)
-		ft_putstr_fd(RED"Rooms not connected. Not even with one link.\n", 2);
+		ft_putstr_fd(YEL"Rooms not connected. Not even with one link.\n", 2);
 	if (error == ROOM)
-		ft_putstr_fd(RED"Yep, you forgot the rooms.\n", 2);
+		ft_putstr_fd(MAG"Yep, you forgot the rooms.\n", 2);
 	exit(0);
 }
 

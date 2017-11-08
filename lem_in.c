@@ -20,9 +20,9 @@ void		one_answer(int ant, char *room, int i)
 {
 	if (i)
 		ft_putchar(' ');
-	ft_putchar('L');
+	ft_putstr(CYN"L");
 	ft_putnbr(ant);
-	ft_putchar('-');
+	ft_putstr(RESET"-"PNK);
 	ft_putstr(room);
 }
 
