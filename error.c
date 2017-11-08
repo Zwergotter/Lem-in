@@ -49,6 +49,6 @@ void	what_error(t_data *data)
 		error(END);
 	if (!data->link)
 		error(LINK);
-	if (!data->end->links)
+	if (!data->end->links || !data->start->links)
 		error(NO_PATH);
 }
