@@ -65,7 +65,8 @@ int			hash_line(t_data *data, char **line)
 			data->all = join_line(data->all, *line);
 			get_next_line(0, line);
 		}
-		room(data, *line, i);
+		if (!room(data, *line, i))
+			return (0);
 	}
 	return (1);
 }

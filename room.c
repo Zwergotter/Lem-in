@@ -97,7 +97,7 @@ int			room(t_data *data, char *line, int i)
 
 	if (!(tmp = ft_strsplit(line, ' ')))
 		error(MEM);
-	if (tmp[0][0] == 'L' || data->link || len_tab(tmp) != 3)
+	if (tmp[0][0] == 'L' || tmp[0][0] == '#' || data->link || len_tab(tmp) != 3)
 		return (0);
 	to_check(data, tmp, i);
 	free_tab(tmp);
