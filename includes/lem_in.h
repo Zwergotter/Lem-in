@@ -14,10 +14,11 @@
 # define LEM_IN_H
 
 # include "../libft/includes/libft.h"
+# include "color.h"
 
 typedef	enum		e_error
 {
-	NONE, MEM, NOT_NB, NAME, LEN, SAME, NO_PATH, ERROR, ILLEGAL
+	NONE, MEM, NOT_NB, SAME, NO_PATH, ERROR, START_END, START, END, LINK, ROOM
 }					t_error;
 
 typedef struct		s_rooms
@@ -42,6 +43,7 @@ typedef struct		s_data
 	t_rooms			*rooms;
 	char			*all;
 	int				imax;
+	int				link;
 }					t_data;
 
 int					tube(t_data *data, char *line);
@@ -51,6 +53,7 @@ int					start_end_values(t_data *data, char **tmp, int i);
 void				init_data(t_data *data);
 
 void				error(t_error error);
+void				what_error(t_data *data);
 
 void				free_tab(char **t);
 

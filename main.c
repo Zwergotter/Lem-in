@@ -6,7 +6,7 @@
 /*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 15:05:00 by edeveze           #+#    #+#             */
-/*   Updated: 2017/11/07 10:14:37 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/11/07 13:54:08 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,11 @@ int		main(void)
 	init_data(data);
 	ft_putstr(data->all);
 	ft_putchar('\n');
-	if (data->error)
-		error(data->error);
-	if (data->start == data->end && data->start)
+	if (data->start && data->start == data->end)
 		error(SAME);
-	if (data->start && data->end)
-	{
-		if (data->start->links && data->end->links)
-			lem_in(data);
-		else
-			error(NO_PATH);
-	}
+	if (data->start && data->end && data->start->links && data->end->links)
+		lem_in(data);
 	else
-		ft_putstr("ERROR\n");
+		what_error(data);
 	return (0);
 }

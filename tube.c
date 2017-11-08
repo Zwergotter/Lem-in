@@ -46,6 +46,7 @@ int			giving_links(t_data *data, char *room1, char *room2)
 	room = data->rooms;
 	first = NULL;
 	second = NULL;
+	data->link = 1;
 	while (room)
 	{
 		if (!ft_strcmp(room1, room->name))
@@ -83,6 +84,7 @@ int			tube(t_data *data, char *line)
 	room2 = ft_strsub(line, i, j - i);
 	if (!ft_strcmp(room1, room2))
 	{
+		data->link = 1;
 		free(room1);
 		free(room2);
 		return (1);

@@ -41,7 +41,6 @@ int			other(t_data *data, char *line)
 		return (1);
 	if (line[i] == ' ' && room(data, line, -1))
 		return (1);
-	data->error = ILLEGAL;
 	return (0);
 }
 
@@ -52,6 +51,8 @@ int			hash_line(t_data *data, char **line)
 	i = 0;
 	if (ft_strcmp("##start", *line) == 0 || ft_strcmp("##end", *line) == 0)
 	{
+		if (data->link)
+			return (0);
 		if ((*line)[2] == 's')
 			i = 1;
 		data->all = join_line(data->all, *line);
@@ -76,44 +77,32 @@ void		set_values(t_data *data, char *number)
 	data->end = NULL;
 	data->rooms = NULL;
 	data->imax = 0;
+	data->link = 0;
 	data->n_ants = ft_atoi(number);
-	// data->all = NULL;
+	data->all = NULL;
 	data->all = join_line(data->all, number);
 }
 
-void		ant_number(t_data *data)
+void		init_data(t_data *data)
 {
+	char	*line;
 	char	*number;
 	char	buf[2];
 	int		ret;
 
 	buf[1] = 0;
 	number = ft_strdup("");
-	data->all = NULL;
 	while ((ret = read(0, buf, 1)) != 0 && ret != -1)
 	{
-		if (*buf == '#')
-		{
-			while (*buf && *buf != '\n')
-				ret = read(0, buf, 1);
-		}
 		if (ft_isdigit(*buf))
-				number = ft_strjoinfree(number, buf, 1);
-		if (*buf == '\n' && number[0])
+			number = ft_strjoinfree(number, buf, 1);
+		else if (*buf == '\n')
 			break ;
-		if (*buf != '\n' && !ft_isdigit(*buf) && *buf != '#')
+		else
 			error(NOT_NB);
 	}
-	set_values(data, number);
-}
-
-void		init_data(t_data *data)
-{
-	char	*line;
-	int		ret;
-
-	ant_number(data);
 	ret = 1;
+	set_values(data, number);
 	while (ret && get_next_line(0, &line) && ft_isprint(line[0]))
 	{
 		ret = (line[0] == '#') ? hash_line(data, &line) : other(data, line);
@@ -122,32 +111,3 @@ void		init_data(t_data *data)
 		free(line);
 	}
 }
-
-// void		init_data(t_data *data)
-// {
-// 	char	*line;
-// 	char	*number;
-// 	char	buf[2];
-// 	int		ret;
-
-// 	buf[1] = 0;
-// 	number = ft_strdup("");
-// 	while ((ret = read(0, buf, 1)) != 0 && ret != -1)
-// 	{
-// 		if (ft_isdigit(*buf))
-// 			number = ft_strjoinfree(number, buf, 1);
-// 		else if (*buf == '\n')
-// 			break ;
-// 		else
-// 			error(NOT_NB);
-// 	}
-// 	ret = 1;
-// 	set_values(data, number);
-// 	while (ret && get_next_line(0, &line) && ft_isprint(line[0]))
-// 	{
-// 		ret = (line[0] == '#') ? hash_line(data, &line) : other(data, line);
-// 		if (ret)
-// 			data->all = join_line(data->all, line);
-// 		free(line);
-// 	}
-// }
