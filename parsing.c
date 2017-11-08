@@ -99,7 +99,7 @@ void		init_data(t_data *data)
 	{
 		if (ft_isdigit(*buf))
 			number = ft_strjoinfree(number, buf, 1);
-		else if (*buf == '\n')
+		else if (*buf == '\n' && number[0])
 			break ;
 		else
 			error(NOT_NB);
