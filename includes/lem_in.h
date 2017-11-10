@@ -6,7 +6,7 @@
 /*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 15:05:29 by edeveze           #+#    #+#             */
-/*   Updated: 2017/11/07 11:51:33 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/11/10 14:31:04 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ typedef struct		s_rooms
 	int				coord_y;
 	struct s_rooms	**links;
 	struct s_rooms	*next;
-	int				indice;
-	int				istart;
+	int				i_end;
+	int				i_start;
 	int				ant;
 	int				order;
 }					t_rooms;
@@ -45,6 +45,7 @@ typedef struct		s_data
 	char			*all;
 	int				imax;
 	int				link;
+	int				O;
 }					t_data;
 
 int					tube(t_data *data, char *line);
@@ -53,7 +54,7 @@ int					room(t_data *data, char *line, int i);
 int					start_end_values(t_data *data, char **tmp, int i);
 void				init_data(t_data *data);
 
-void				error(t_error error);
+void				error(t_data *data, t_error error);
 void				what_error(t_data *data);
 
 void				free_tab(char **t);

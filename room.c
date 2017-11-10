@@ -6,7 +6,7 @@
 /*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 17:37:43 by edeveze           #+#    #+#             */
-/*   Updated: 2017/11/07 13:55:12 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/11/10 14:54:31 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void		new(t_rooms *last, char **tmp, t_data *data, int i)
 	t_rooms *new;
 
 	if (!(new = malloc(sizeof(t_rooms))))
-		error(MEM);
+		error(data, MEM);
 	if (i == 1 || i == 2)
 		data->start = new;
 	if (i == 0 || i == 2)
@@ -35,8 +35,8 @@ void		new(t_rooms *last, char **tmp, t_data *data, int i)
 	new->name = ft_strdup(tmp[0]);
 	new->coord_x = ft_atoi(tmp[1]);
 	new->coord_y = ft_atoi(tmp[2]);
-	new->indice = -1;
-	new->istart = -1;
+	new->i_end = -1;
+	new->i_start = -1;
 	new->ant = 0;
 	new->order = 0;
 	new->links = NULL;
@@ -100,7 +100,7 @@ int			room(t_data *data, char *line, int i)
 	x = 1;
 	y = 0;
 	if (!(tmp = ft_strsplit(line, ' ')))
-		error(MEM);
+		error(data, MEM);
 	if (tmp[0][0] == 'L' || tmp[0][0] == '#' || data->link || len_tab(tmp) != 3)
 		return (0);
 	while (x < 3)

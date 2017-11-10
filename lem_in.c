@@ -6,7 +6,7 @@
 /*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 21:27:54 by edeveze           #+#    #+#             */
-/*   Updated: 2017/11/07 15:12:37 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/11/10 14:53:35 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,16 @@ int			dispatching_ants(t_data *data, t_rooms *start, int count)
 	int		indice;
 
 	j = -1;
-	indice = start->indice - 2;
+	indice = start->i_end - 2;
 	ant = data->n_ants - start->ant + 1;
 	while (++indice < data->imax)
 	{
 		j = -1;
 		while (start->links[++j])
 		{
-			if (start->ant && start->links[j]->indice == indice &&
+			if (start->ant && start->links[j]->i_end == indice &&
 				!start->links[j]->ant &&
-				start->ant > start->links[j]->indice - start->indice)
+				start->ant > start->links[j]->i_end - start->i_end)
 			{
 				start->links[j]->ant = ant;
 				one_answer(ant, start->links[j]->name, count);
@@ -74,7 +74,7 @@ int			checking_each(t_data *data, t_rooms *r, int i, int count)
 	j = -1;
 	while (r->links[++j])
 	{
-		if (r->links[j]->indice == i - 1 && r->links[j] != data->start &&
+		if (r->links[j]->i_end == i - 1 && r->links[j] != data->start &&
 			(r->links[j] == data->end || !(r->links[j]->ant)))
 		{
 			if (r->links[j] != data->end)
@@ -104,7 +104,7 @@ void		final(t_data *data)
 		r = data->rooms;
 		while (r)
 		{
-			if (r->indice == i && r->ant && r != data->start)
+			if (r->i_end == i && r->ant && r != data->start)
 				count = checking_each(data, r, i, count);
 			r = r->next;
 		}
@@ -120,10 +120,10 @@ void		lem_in(t_data *data)
 
 	i = 1;
 	set_data(data);
-	if (data->start->indice == -1)
-		error(NO_PATH);
+	if (data->start->i_end == -1)
+		error(data, NO_PATH);
 	ordering(data);
-	if (data->start->indice == 1)
+	if (data->start->i_end == 1)
 	{
 		one_answer(1, data->end->name, 0);
 		while (i != data->n_ants)

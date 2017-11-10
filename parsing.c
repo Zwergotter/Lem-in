@@ -6,7 +6,7 @@
 /*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 17:05:53 by edeveze           #+#    #+#             */
-/*   Updated: 2017/11/07 14:24:53 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/11/10 14:33:37 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void		set_values(t_data *data, char *number)
 	data->link = 0;
 	data->n_ants = ft_atoi(number);
 	if (!data->n_ants)
-		error(ZERO);
+		error(data, ZERO);
 	data->all = NULL;
 	data->all = join_line(data->all, number);
 }
@@ -102,7 +102,7 @@ void		init_data(t_data *data)
 		else if (*buf == '\n' && number[0])
 			break ;
 		else
-			error(NOT_NB);
+			error(data, NOT_NB);
 	}
 	ret = 1;
 	set_values(data, number);
