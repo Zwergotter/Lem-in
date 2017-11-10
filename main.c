@@ -6,7 +6,7 @@
 /*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 15:05:00 by edeveze           #+#    #+#             */
-/*   Updated: 2017/11/10 14:39:08 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/11/10 16:26:15 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,28 @@
 void	option(t_data *data, int ac, char **av)
 {
 	int	i;
-	int j;
+	int	j;
 
 	i = 0;
-	j = 0;
 	while (i < ac - 1)
 	{
 		i++;
-		j = 0;
-		if (av[i][j] == '-')
+		if (av[i][0] != '-' || !av[i][1])
 		{
-			while(av[i][j])
+			ft_putstr_fd("lem-in: usage: lem-in [-O]\n", 2);
+			exit(0);
+		}
+		j = 1;
+		while (av[i][j])
+		{
+			if (av[i][j] == 'O')
+				data->O = 1;
+			else
 			{
-				if (av[i][j] == 'O')
-					data->O = 1;
-				j++;
+				ft_putstr_fd("lem-in: usage: lem-in [-O]\n", 2);
+				exit(0);
 			}
+			j++;
 		}
 	}
 }
