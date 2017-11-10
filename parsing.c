@@ -6,7 +6,7 @@
 /*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 17:05:53 by edeveze           #+#    #+#             */
-/*   Updated: 2017/11/10 15:22:02 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/11/10 19:52:50 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,21 +51,19 @@ int			hash_line(t_data *data, char **line)
 	i = 0;
 	if (ft_strcmp("##start", *line) == 0 || ft_strcmp("##end", *line) == 0)
 	{
-		if (data->link)
-			return (0);
 		if ((*line)[2] == 's')
 			i = 1;
 		data->all = join_line(data->all, *line);
 		get_next_line(0, line);
-		while (ft_strcmp("##start", *line) == 0 ||
-			ft_strcmp("##end", *line) == 0)
+		while ((*line)[0] == '#')
 		{
-			if (((*line)[2] == 's' && i == 0) || ((*line)[2] == 'e' && i == 1))
+			if ((ft_strcmp("##start", *line) == 0 && i == 0) ||
+				(ft_strcmp("##end", *line) == 0 && i == 1))
 				i = 2;
 			data->all = join_line(data->all, *line);
 			get_next_line(0, line);
 		}
-		if (!room(data, *line, i))
+		if (!(**line) || !room(data, *line, i))
 			return (0);
 	}
 	return (1);
