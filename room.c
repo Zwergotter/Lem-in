@@ -6,21 +6,11 @@
 /*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 17:37:43 by edeveze           #+#    #+#             */
-/*   Updated: 2017/11/10 15:21:22 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/11/11 00:07:32 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/lem_in.h"
-
-int			len_tab(char **tmp)
-{
-	int		i;
-
-	i = 0;
-	while (tmp[i])
-		i++;
-	return (i);
-}
 
 void		new(t_rooms *last, char **tmp, t_data *data, int i)
 {
@@ -47,9 +37,18 @@ void		new(t_rooms *last, char **tmp, t_data *data, int i)
 		last->next = new;
 }
 
+void		same_coord(t_data *data, t_rooms *lst, char **tmp, int i)
+{
+	free(lst->name);
+	lst->name = ft_strdup(tmp[0]);
+	data->start = (i == 1 || i == 2) ? lst : data->start;
+	data->end = (i == 0 || i == 2) ? lst : data->end;
+}
+
 /*
 ** Seeing if coordinates correspond to another room already. If yes, it changes
 ** its name.
+** Checking also if room name is already taken and if yes, will change coord.
 */
 
 void		to_check(t_data *data, char **tmp, int i)
@@ -61,9 +60,7 @@ void		to_check(t_data *data, char **tmp, int i)
 	{
 		if (lst->coord_x == ft_atoi(tmp[1]) && lst->coord_y == ft_atoi(tmp[2]))
 		{
-			lst->name = ft_strdup(tmp[0]);
-			data->start = (i == 1 || i == 2) ? lst : data->start;
-			data->end = (i == 0 || i == 2) ? lst : data->end;
+			same_coord(data, lst, tmp, i);
 			return ;
 		}
 		if (!ft_strcmp(lst->name, tmp[0]))
@@ -81,30 +78,13 @@ void		to_check(t_data *data, char **tmp, int i)
 	new(lst, tmp, data, i);
 }
 
-void		free_tab(char **t)
+int			checking_tmp(char **tmp)
 {
-	int		i;
-
-	i = -1;
-	while (t[++i])
-		free(t[i]);
-	free(t);
-}
-
-int			room(t_data *data, char *line, int i)
-{
-	char	**tmp;
 	int		x;
 	int		y;
 
 	x = 1;
 	y = 0;
-	if (!(tmp = ft_strsplit(line, ' ')))
-		error(data, MEM);
-	if (tmp[0][0] == '#')
-		return (1); 
-	if (tmp[0][0] == 'L' || data->link || len_tab(tmp) != 3)
-		return (0);
 	while (x < 3)
 	{
 		y = 0;
@@ -114,6 +94,21 @@ int			room(t_data *data, char *line, int i)
 				return (0);
 		}
 		x++;
+	}
+	return (1);
+}
+
+int			room(t_data *data, char *line, int i)
+{
+	char	**tmp;
+
+	if (!(tmp = ft_strsplit(line, ' ')))
+		error(data, MEM);
+	if (tmp[0][0] == '#' || tmp[0][0] == 'L' || data->link || len_tab(tmp) != 3
+		|| !checking_tmp(tmp))
+	{
+		free_tab(tmp);
+		return (0);
 	}
 	to_check(data, tmp, i);
 	free_tab(tmp);

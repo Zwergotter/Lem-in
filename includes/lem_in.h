@@ -6,7 +6,7 @@
 /*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 15:05:29 by edeveze           #+#    #+#             */
-/*   Updated: 2017/11/10 20:02:29 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/11/11 00:05:07 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,11 @@ typedef struct		s_data
 	int				n_ants;
 	t_rooms			*rooms;
 	char			*all;
+	char			*room1;
+	char			*room2;
 	int				imax;
 	int				link;
-	int				O;
+	int				opt;
 }					t_data;
 
 int					tube(t_data *data, char *line);
@@ -65,7 +67,8 @@ void				init_data(t_data *data);
 void				error(t_data *data, t_error error);
 void				what_error(t_data *data);
 
-void				free_tab(char **t);
+void				free_tab(char **tmp);
+int					len_tab(char **tmp);
 
 void				ordering(t_data *data);
 

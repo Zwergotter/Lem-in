@@ -6,11 +6,11 @@
 /*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 21:00:13 by edeveze           #+#    #+#             */
-/*   Updated: 2017/11/10 14:50:16 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/11/11 00:03:32 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/lem_in.h"\
+#include "includes/lem_in.h"
 
 void	answer(t_error error)
 {
@@ -39,7 +39,7 @@ void	answer(t_error error)
 
 void	error(t_data *data, t_error error)
 {
-	if (data->O)
+	if (data->opt)
 		answer(error);
 	else
 		ft_putstr_fd("ERROR\n", 2);

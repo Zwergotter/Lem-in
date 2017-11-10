@@ -6,7 +6,7 @@
 /*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 17:05:53 by edeveze           #+#    #+#             */
-/*   Updated: 2017/11/10 20:48:26 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/11/11 00:10:29 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ int			other(t_data *data, char *line)
 	int		i;
 
 	i = 0;
-	while (line[i] && line[i] != ' ' && line[i] != '-')
+	while (line[i] && line[i] != '-')
 		i++;
 	if (line[i] == '-' && tube(data, line))
 		return (1);
-	if (line[i] == ' ' && room(data, line, -1))
+	if (!line[i] && room(data, line, -1))
 		return (1);
 	return (0);
 }
@@ -80,11 +80,13 @@ void		set_values(t_data *data, char *number)
 	data->imax = 0;
 	data->link = 0;
 	data->n_ants = ft_atoi(number);
-	free(number);
 	if (!data->n_ants)
 		error(data, ZERO);
 	data->all = NULL;
+	data->room1 = NULL;
+	data->room2 = NULL;
 	data->all = join_line(data->all, number);
+	free(number);
 }
 
 void		init_data(t_data *data)

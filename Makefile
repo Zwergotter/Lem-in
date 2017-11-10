@@ -6,7 +6,7 @@
 #    By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/09/21 15:08:58 by edeveze           #+#    #+#              #
-#    Updated: 2017/11/06 20:49:59 by edeveze          ###   ########.fr        #
+#    Updated: 2017/11/11 00:03:52 by edeveze          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,7 @@ SRC = 	main.c \
 		parsing.c \
 		ordering.c \
 		room.c \
+		room_tab.c \
 		tube.c \
 		set_data.c
 

@@ -6,7 +6,7 @@
 /*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 15:05:00 by edeveze           #+#    #+#             */
-/*   Updated: 2017/11/10 16:26:15 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/11/10 23:54:59 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	option(t_data *data, int ac, char **av)
 		while (av[i][j])
 		{
 			if (av[i][j] == 'O')
-				data->O = 1;
+				data->opt = 1;
 			else
 			{
 				ft_putstr_fd("lem-in: usage: lem-in [-O]\n", 2);
@@ -46,7 +46,7 @@ int		main(int ac, char **av)
 	t_data	*data;
 
 	data = palloc(sizeof(t_data));
-	data->O = 0;
+	data->opt = 0;
 	option(data, ac, av);
 	init_data(data);
 	ft_putstr(data->all);
