@@ -6,7 +6,7 @@
 /*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/21 15:05:29 by edeveze           #+#    #+#             */
-/*   Updated: 2017/11/10 14:31:04 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/11/10 20:02:29 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,15 @@
 # define LEM_IN_H
 
 # include "../libft/includes/libft.h"
-# include "color.h"
+# define RED "\x1B[31m"
+# define GRN "\x1B[32m"
+# define YEL "\x1B[33m"
+# define BLU "\x1B[34m"
+# define MAG "\x1B[35m"
+# define CYN "\x1B[36m"
+# define WHT "\x1B[37m"
+# define PNK "\x1B[95m"
+# define RESET "\x1B[0m"
 
 typedef	enum		e_error
 {
