@@ -6,7 +6,7 @@
 /*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/28 17:37:43 by edeveze           #+#    #+#             */
-/*   Updated: 2017/11/10 14:54:31 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/11/10 15:21:22 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,9 @@ int			room(t_data *data, char *line, int i)
 	y = 0;
 	if (!(tmp = ft_strsplit(line, ' ')))
 		error(data, MEM);
-	if (tmp[0][0] == 'L' || tmp[0][0] == '#' || data->link || len_tab(tmp) != 3)
+	if (tmp[0][0] == '#')
+		return (1); 
+	if (tmp[0][0] == 'L' || data->link || len_tab(tmp) != 3)
 		return (0);
 	while (x < 3)
 	{

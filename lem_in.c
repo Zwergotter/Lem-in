@@ -6,7 +6,7 @@
 /*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/10/05 21:27:54 by edeveze           #+#    #+#             */
-/*   Updated: 2017/11/10 14:53:35 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/11/10 15:20:01 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void		one_answer(int ant, char *room, int i)
 	ft_putnbr(ant);
 	ft_putstr(RESET"-"PNK);
 	ft_putstr(room);
+	ft_putstr(""RESET);
 }
 
 /*
@@ -90,6 +91,17 @@ int			checking_each(t_data *data, t_rooms *r, int i, int count)
 	return (count);
 }
 
+/*
+** Algo that will move ants checking room one by one according to their i_end,
+** starting from data->rooms as the first one.
+** If room i_end == i, there's ant in it and it's not start, will call
+** checking_each.
+** If we reach start, will call disptaching_ants.
+** So at the end it displays all ants' movements for one turn, where count helps
+** us to see if something was written before or not on one line, so we can add
+** a space or not before writing the new movement.
+*/
+
 void		final(t_data *data)
 {
 	int		i;
@@ -113,6 +125,14 @@ void		final(t_data *data)
 		dispatching_ants(data, data->start, count);
 	ft_putchar('\n');
 }
+
+/*
+** Will set start and end indices by calling set_data.
+** Then will call ordering to sort links and rooms.
+** Finally if end indice for start room is equal to 1, it means that start and
+** end rooms are directly connected, so we can move each ant until the end.
+** If not, we call final to dispatch them all.
+*/
 
 void		lem_in(t_data *data)
 {

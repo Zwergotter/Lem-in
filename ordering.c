@@ -6,7 +6,7 @@
 /*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/06 20:50:08 by edeveze           #+#    #+#             */
-/*   Updated: 2017/11/07 10:15:57 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/11/09 16:35:35 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void		sort_links(t_data *data)
 	while (tmp)
 	{
 		i = -1;
-		while (tmp->indice > -1 && tmp->links[++i])
+		while (tmp->i_end > -1 && tmp->links[++i])
 		{
 			if (tmp->links[i + 1] &&
 				tmp->links[i]->order > tmp->links[i + 1]->order)
@@ -49,9 +49,9 @@ void		ordering_indice(t_data *data)
 	while (tmp)
 	{
 		i = -1;
-		while (tmp->indice > -1 && tmp->links[++i])
+		while (tmp->i_end > -1 && tmp->links[++i])
 		{
-			if (tmp->links[i]->indice && tmp->links[i]->indice < tmp->indice)
+			if (tmp->links[i]->i_end && tmp->links[i]->i_end < tmp->i_end)
 				tmp->order++;
 		}
 		tmp = tmp->next;
