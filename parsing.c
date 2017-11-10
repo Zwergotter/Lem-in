@@ -6,7 +6,7 @@
 /*   By: edeveze <edeveze@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/09/25 17:05:53 by edeveze           #+#    #+#             */
-/*   Updated: 2017/11/10 19:52:50 by edeveze          ###   ########.fr       */
+/*   Updated: 2017/11/10 20:48:26 by edeveze          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int			hash_line(t_data *data, char **line)
 		if ((*line)[2] == 's')
 			i = 1;
 		data->all = join_line(data->all, *line);
+		free(*line);
 		get_next_line(0, line);
 		while ((*line)[0] == '#')
 		{
@@ -61,6 +62,7 @@ int			hash_line(t_data *data, char **line)
 				(ft_strcmp("##end", *line) == 0 && i == 1))
 				i = 2;
 			data->all = join_line(data->all, *line);
+			free(*line);
 			get_next_line(0, line);
 		}
 		if (!(**line) || !room(data, *line, i))
@@ -78,6 +80,7 @@ void		set_values(t_data *data, char *number)
 	data->imax = 0;
 	data->link = 0;
 	data->n_ants = ft_atoi(number);
+	free(number);
 	if (!data->n_ants)
 		error(data, ZERO);
 	data->all = NULL;
